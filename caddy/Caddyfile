@@ -22,3 +22,9 @@ http://manager-comodo.perpixai.com {
 http://perpixai.com {
 	reverse_proxy http://landing-root:80
 }
+
+
+
+http://n8n.perpixai.com {
+	reverse_proxy http://n8n:5679
+}
