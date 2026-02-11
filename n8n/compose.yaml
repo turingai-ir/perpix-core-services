@@ -1,0 +1,19 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    ports:
+      - "5678:5678"
+    volumes:
+      - n8n-data:/home/node/.n8n
+    environment:
+      GENERIC_TIMEZONE: UTC
+    restart: unless-stopped
+    networks:
+      - turing
+
+volumes:
+  n8n-data:
+
+networks:
+  turing:
+    external: true
