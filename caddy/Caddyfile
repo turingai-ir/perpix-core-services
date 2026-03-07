@@ -30,3 +30,9 @@ http://n8n.perpixai.com {
 http://manager-komodo.yahoo-google-aparat-soft98-gmail-apple.shop {
 	reverse_proxy http://core:9120
 }
+
+http://cdn-dashboard.yahoo-google-aparat-soft98-gmail-apple.shop {
+	reverse_proxy http://minio:9001
+}
+
+
