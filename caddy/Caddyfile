@@ -27,6 +27,6 @@ http://n8n.perpixai.com {
 	reverse_proxy http://n8n:5678
 }
 
-http://manager-comodo.gleecode.ir {
+http://manager-komodo.yahoo-google-aparat-soft98-gmail-apple.shop {
 	reverse_proxy http://core:9120
 }
