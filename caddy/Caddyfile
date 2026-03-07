@@ -36,3 +36,6 @@ http://cdn-dashboard.yahoo-google-aparat-soft98-gmail-apple.shop {
 }
 
 
+http://cdn.yahoo-google-aparat-soft98-gmail-apple.shop {
+	reverse_proxy http://minio:9000
+}
