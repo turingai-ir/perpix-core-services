@@ -26,3 +26,7 @@ http://perpixai.com {
 http://n8n.perpixai.com {
 	reverse_proxy http://n8n:5678
 }
+
+http://manager-comodo.gleecode.ir {
+	reverse_proxy http://core:9120
+}
