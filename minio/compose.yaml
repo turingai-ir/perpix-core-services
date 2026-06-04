@@ -2,9 +2,6 @@ services:
   minio:
     image: minio/minio:latest
     command: server /data --console-address ":9001"
-    ports:
-      - "9000:9000"
-      - "9001:9001"
     volumes:
       - minio-data:/data
     environment:
@@ -27,7 +24,7 @@ services:
       CLEANUP_AT: "12:00"
       TZ: UTC
     entrypoint: /bin/sh
-    command: -c 'set -e; mc alias set minio "$MINIO_ENDPOINT" "$MINIO_ACCESS_KEY" "$MINIO_SECRET_KEY"; mc mb --ignore-existing "minio/${MINIO_BUCKET}"; mc anonymous set download "minio/${MINIO_BUCKET}"; while true; do hour="${CLEANUP_AT%%:*}"; minute="${CLEANUP_AT##*:}"; now_h=$(date +%H); now_m=$(date +%M); now_s=$(date +%S); now_total=$((10#$now_h*3600 + 10#$now_m*60 + 10#$now_s)); target_total=$((10#$hour*3600 + 10#$minute*60)); if [ "$now_total" -ge "$target_total" ]; then sleep $((86400 - now_total + target_total)); else sleep $((target_total - now_total)); fi; mc rm --incomplete --older-than "${CLEANUP_OLDER_THAN}" "minio/${MINIO_BUCKET}" || true; done'
+    command: -c 'set -e; mc alias set minio "$$MINIO_ENDPOINT" "$$MINIO_ACCESS_KEY" "$$MINIO_SECRET_KEY"; mc mb --ignore-existing "minio/$${MINIO_BUCKET}"; mc anonymous set download "minio/$${MINIO_BUCKET}"; while true; do hour="$${CLEANUP_AT%%:*}"; minute="$${CLEANUP_AT##*:}"; now_h=$$(date +%H); now_m=$$(date +%M); now_s=$$(date +%S); now_total=$$((10#$$now_h*3600 + 10#$$now_m*60 + 10#$$now_s)); target_total=$$((10#$$hour*3600 + 10#$$minute*60)); if [ "$$now_total" -ge "$$target_total" ]; then sleep $$((86400 - now_total + target_total)); else sleep $$((target_total - now_total)); fi; mc rm --incomplete --older-than "$${CLEANUP_OLDER_THAN}" "minio/$${MINIO_BUCKET}" || true; done'
     restart: unless-stopped
     networks:
       - turing

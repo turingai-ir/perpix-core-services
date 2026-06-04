@@ -7,8 +7,6 @@ services:
       --requirepass ${REDIS_PASSWORD}
       --save ""
       --appendonly no
-    ports:
-      - "6379:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
       interval: 10s
