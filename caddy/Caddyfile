@@ -8,11 +8,11 @@ http://app.perpixai.com {
 }
 
 http://cdn-dashboard.perpixai.com {
-	reverse_proxy http://minio:9001
+	reverse_proxy http://rustfs:9001
 }
 
 http://cdn.perpixai.com {
-	reverse_proxy http://minio:9000
+	reverse_proxy http://rustfs:9000
 }
 
 http://manager-comodo.perpixai.com {
@@ -27,20 +27,3 @@ http://n8n.perpixai.com {
 	reverse_proxy http://n8n:5678
 }
 
-http://manager-komodo.yahoo-google-aparat-soft98-gmail-apple.shop {
-	reverse_proxy http://core:9120
-}
-
-http://cdn-dashboard.yahoo-google-aparat-soft98-gmail-apple.shop {
-	reverse_proxy http://minio:9001
-}
-
-
-http://cdn.yahoo-google-aparat-soft98-gmail-apple.shop {
-	reverse_proxy http://minio:9000
-}
-
-
-http://n8n.yahoo-google-aparat-soft98-gmail-apple.shop {
-	reverse_proxy http://n8n:5678
-}
