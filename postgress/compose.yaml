@@ -80,8 +80,11 @@ services:
       - postgres
 
     logging: *default-logging
+
+
 volumes:
   postgres_data:
+  pgadmin_data:
 
 networks:
   turing:
