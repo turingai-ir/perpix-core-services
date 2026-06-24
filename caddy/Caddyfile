@@ -27,3 +27,6 @@ http://n8n.perpixai.com {
 	reverse_proxy http://n8n:5678
 }
 
+http://pgadmin.perpixai.com {
+	reverse_proxy http://pgadmin:5050
+}
