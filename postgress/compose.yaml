@@ -1,3 +1,9 @@
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
   postgres:
     image: postgres:18-alpine
@@ -22,6 +28,8 @@ services:
       - "wal_buffers=8MB"
       - "-c"
       - "checkpoint_completion_target=0.9"
+      - "-c"
+      - "listen_addresses=*"
 
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -31,7 +39,7 @@ services:
       PGTZ: UTC
 
     volumes:
-      - postgres_data:/var/lib/postgresql   # 👈 تغییر اصلی
+      - postgres_data:/var/lib/postgresql
       - ./init:/docker-entrypoint-initdb.d/
 
     restart: unless-stopped
