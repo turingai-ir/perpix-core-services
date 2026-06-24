@@ -54,23 +54,16 @@ services:
 
     env_file:
       - /opt/turing/.env
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    container_name: pgadmin
-    mem_limit: 300m
-    cpus: "0.30"
 
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
-      TZ: UTC
-
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
-
-
-
+  adminer:
+    image: adminer:latest
+    container_name: adminer
     restart: unless-stopped
+    logging: *default-logging
+    mem_limit: 128m
+    cpus: "0.20"
+
+
 
     networks:
       - turing
@@ -78,12 +71,8 @@ services:
     depends_on:
       - postgres
 
-    logging: *default-logging
-
-
 volumes:
   postgres_data:
-  pgadmin_data:
 
 networks:
   turing:
