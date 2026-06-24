@@ -2,6 +2,8 @@ services:
   n8n:
     image: n8nio/n8n:latest
     container_name: n8n
+    mem_limit: 500m
+    cpus: "0.20"
     volumes:
       - n8n-data:/home/node/.n8n
     environment:

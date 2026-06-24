@@ -2,6 +2,8 @@ services:
   rustfs:
     image: rustfs/rustfs:latest
     container_name: rustfs
+    mem_limit: 500m
+    cpus: "0.50"
     security_opt:
       - no-new-privileges:true
     environment:

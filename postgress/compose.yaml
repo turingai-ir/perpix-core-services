@@ -2,6 +2,8 @@ services:
   postgres:
     image: postgres:alpine
     container_name: postgres-python
+    mem_limit: 500m
+    cpus: "0.80"
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
