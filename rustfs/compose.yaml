@@ -39,6 +39,8 @@ services:
     restart: unless-stopped
     networks:
       - turing
+    env_file:
+      - /opt/turing/.env
 
 volumes:
   rustfs-data:

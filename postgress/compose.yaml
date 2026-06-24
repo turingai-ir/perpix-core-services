@@ -44,6 +44,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    env_file:
+      - /opt/turing/.env
 
 volumes:
   postgres_data:
