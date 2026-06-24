@@ -1,9 +1,16 @@
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
   rustfs:
     image: rustfs/rustfs:latest
     container_name: rustfs
     mem_limit: 500m
     cpus: "0.50"
+    logging: *default-logging
     security_opt:
       - no-new-privileges:true
     environment:
