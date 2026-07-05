@@ -36,7 +36,7 @@ http://api.perpix.ir {
 }
 
 http://app.perpix.ir {
-	reverse_proxy http://perpixai-app:80
+	reverse_proxy http://perpix-app:80
 }
 
 http://cdn-dashboard.perpix.ir {
@@ -68,7 +68,7 @@ http://api.perpixai.ir {
 }
 
 http://app.perpixai.ir {
-	reverse_proxy http://perpixai-app:80
+	reverse_proxy http://perpix-app:80
 }
 
 http://cdn-dashboard.perpixai.ir {
