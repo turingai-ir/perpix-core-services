@@ -1,0 +1,123 @@
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: komodo-mongo
+    mem_limit: 512m
+    cpus: "0.20"
+    logging: *default-logging
+    command: --quiet --wiredTigerCacheSizeGB 0.25
+    labels:
+      komodo.skip: true
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DATABASE_USERNAME:-komodo}
+      MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DATABASE_PASSWORD:?set KOMODO_DATABASE_PASSWORD in /opt/perpix/.env}
+    volumes:
+      - komodo-mongo-data:/data/db
+      - komodo-mongo-config:/data/configdb
+    restart: unless-stopped
+    networks:
+      - komodo
+    env_file:
+      - path: /opt/perpix/.env
+        required: false
+
+  core:
+    image: ghcr.io/moghtech/komodo-core:${COMPOSE_KOMODO_IMAGE_TAG:-2}
+    container_name: komodo-core
+    init: true
+    mem_limit: 512m
+    cpus: "0.25"
+    logging: *default-logging
+    depends_on:
+      - mongo
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      KOMODO_DATABASE_ADDRESS: mongo:27017
+      KOMODO_DATABASE_USERNAME: ${KOMODO_DATABASE_USERNAME:-komodo}
+      KOMODO_DATABASE_PASSWORD: ${KOMODO_DATABASE_PASSWORD:?set KOMODO_DATABASE_PASSWORD in /opt/perpix/.env}
+      KOMODO_HOST: ${KOMODO_HOST:-https://monitor.perpixai.com}
+      KOMODO_TITLE: ${KOMODO_TITLE:-Perpix Komodo}
+      KOMODO_LOCAL_AUTH: ${KOMODO_LOCAL_AUTH:-true}
+      KOMODO_INIT_ADMIN_USERNAME: ${KOMODO_INIT_ADMIN_USERNAME:-admin}
+      KOMODO_INIT_ADMIN_PASSWORD: ${KOMODO_INIT_ADMIN_PASSWORD:?set KOMODO_INIT_ADMIN_PASSWORD in /opt/perpix/.env}
+      KOMODO_DISABLE_USER_REGISTRATION: ${KOMODO_DISABLE_USER_REGISTRATION:-true}
+      KOMODO_ENABLE_NEW_USERS: ${KOMODO_ENABLE_NEW_USERS:-false}
+      KOMODO_DISABLE_INIT_RESOURCES: ${KOMODO_DISABLE_INIT_RESOURCES:-true}
+      KOMODO_MONITORING_INTERVAL: ${KOMODO_MONITORING_INTERVAL:-5-min}
+      KOMODO_RESOURCE_POLL_INTERVAL: ${KOMODO_RESOURCE_POLL_INTERVAL:-6-hr}
+      KOMODO_WEBHOOK_SECRET: ${KOMODO_WEBHOOK_SECRET:?set KOMODO_WEBHOOK_SECRET in /opt/perpix/.env}
+      KOMODO_JWT_SECRET: ${KOMODO_JWT_SECRET:?set KOMODO_JWT_SECRET in /opt/perpix/.env}
+      KOMODO_JWT_TTL: ${KOMODO_JWT_TTL:-1-day}
+      KOMODO_LOGGING_PRETTY: ${KOMODO_LOGGING_PRETTY:-false}
+      KOMODO_PRETTY_STARTUP_CONFIG: ${KOMODO_PRETTY_STARTUP_CONFIG:-false}
+      KOMODO_PERIPHERY_PUBLIC_KEY: file:/config/keys/periphery.pub
+      KOMODO_FIRST_SERVER_NAME: ${KOMODO_FIRST_SERVER_NAME:-Local}
+      TZ: ${TZ:-Asia/Tehran}
+    ports:
+      - "127.0.0.1:9120:9120"
+    volumes:
+      - komodo-keys:/config/keys
+      - komodo-backups:/backups
+    restart: unless-stopped
+    networks:
+      - perpix
+      - komodo
+    env_file:
+      - path: /opt/perpix/.env
+        required: false
+
+  periphery:
+    image: ghcr.io/moghtech/komodo-periphery:${COMPOSE_KOMODO_IMAGE_TAG:-2}
+    container_name: komodo-periphery
+    init: true
+    mem_limit: 256m
+    cpus: "0.10"
+    logging: *default-logging
+    depends_on:
+      - core
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      PERIPHERY_CORE_ADDRESS: ws://core:9120
+      PERIPHERY_CONNECT_AS: ${KOMODO_FIRST_SERVER_NAME:-Local}
+      PERIPHERY_CORE_PUBLIC_KEYS: file:/config/keys/core.pub
+      PERIPHERY_ROOT_DIRECTORY: ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
+      PERIPHERY_DISABLE_TERMINALS: ${PERIPHERY_DISABLE_TERMINALS:-true}
+      PERIPHERY_DISABLE_CONTAINER_TERMINALS: ${PERIPHERY_DISABLE_CONTAINER_TERMINALS:-true}
+      PERIPHERY_STATS_POLLING_RATE: ${PERIPHERY_STATS_POLLING_RATE:-5-min}
+      PERIPHERY_CONTAINER_STATS_POLLING_RATE: ${PERIPHERY_CONTAINER_STATS_POLLING_RATE:-5-min}
+      PERIPHERY_INCLUDE_DISK_MOUNTS: ${PERIPHERY_INCLUDE_DISK_MOUNTS:-/etc/hostname}
+      PERIPHERY_LOGGING_PRETTY: ${PERIPHERY_LOGGING_PRETTY:-false}
+      PERIPHERY_PRETTY_STARTUP_CONFIG: ${PERIPHERY_PRETTY_STARTUP_CONFIG:-false}
+      TZ: ${TZ:-Asia/Tehran}
+    volumes:
+      - komodo-keys:/config/keys
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc:/proc:ro
+      - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
+    restart: unless-stopped
+    networks:
+      - komodo
+    env_file:
+      - path: /opt/perpix/.env
+        required: false
+
+volumes:
+  komodo-mongo-data:
+  komodo-mongo-config:
+  komodo-keys:
+  komodo-backups:
+
+networks:
+  perpix:
+    external: true
+  komodo:

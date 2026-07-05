@@ -15,12 +15,9 @@ http://cdn.perpixai.com {
 	reverse_proxy http://rustfs:9000
 }
 
-http://beszel.perpixai.com {
-	reverse_proxy http://beszel:8090
-}
 
-http://monitor.perpixai.com {
-	reverse_proxy http://beszel:8090
+http://komodo.perpixai.com {
+	reverse_proxy http://komodo-core:9120
 }
 
 
@@ -46,17 +43,12 @@ http://cdn.perpixai.ir {
 	reverse_proxy http://rustfs:9000
 }
 
-http://beszel.perpixai.ir {
-	reverse_proxy http://beszel:8090
-}
-
-http://monitor.perpixai.ir {
-	reverse_proxy http://beszel:8090
+http://komodo.perpixai.ir {
+	reverse_proxy http://komodo-core:9120
 }
 
 
 http://pgadmin.perpixai.ir {
 	reverse_proxy http://adminer:8080
 }
-
 
