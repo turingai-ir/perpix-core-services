@@ -63,7 +63,7 @@ services:
       KOMODO_FIRST_SERVER_NAME: ${KOMODO_FIRST_SERVER_NAME:-Local}
       TZ: ${TZ:-Asia/Tehran}
     ports:
-      - "127.0.0.1:9120:9120"
+      - "9120:9120"
     volumes:
       - komodo-keys:/config/keys
       - komodo-backups:/backups
