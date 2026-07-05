@@ -1,10 +1,10 @@
 
 http://api.perpixai.com {
-	reverse_proxy http://perpixai-api:8000
+	reverse_proxy http://perpix-api:8000
 }
 
 http://app.perpixai.com {
-	reverse_proxy http://perpixai-app:80
+	reverse_proxy http://perpix-app:80
 }
 
 http://cdn-dashboard.perpixai.com {
@@ -32,7 +32,7 @@ http://pgadmin.perpixai.com {
 
 
 http://api.perpix.ir {
-	reverse_proxy http://perpixai-api:8000
+	reverse_proxy http://perpix-api:8000
 }
 
 http://app.perpix.ir {
