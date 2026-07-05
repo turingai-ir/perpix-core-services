@@ -1,4 +1,3 @@
-
-http://komodo.perpixai.ir {
-	reverse_proxy http://komodo-core:9120
+komodo.perpixai.ir {
+    reverse_proxy komodo-core:9120
 }
