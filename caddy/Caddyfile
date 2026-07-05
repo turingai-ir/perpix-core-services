@@ -16,7 +16,7 @@ adminer.perpixai.ir {
 }
 
 api.perpixai.ir {
-	reverse_proxy http://perpix-api:80
+	reverse_proxy http://perpix-api:8000
 }
 
 app.perpixai.ir {
