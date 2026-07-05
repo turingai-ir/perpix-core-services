@@ -1,3 +1,16 @@
 komodo.perpixai.ir {
     reverse_proxy komodo-core:9120
 }
+
+cdn-dashboard.perpixai.ir {
+	reverse_proxy http://rustfs:9001
+}
+
+cdn.perpixai.ir {
+	reverse_proxy http://rustfs:9000
+}
+
+
+adminer.perpixai.ir {
+	reverse_proxy http://adminer:8080
+}

@@ -61,8 +61,6 @@ services:
       KOMODO_PERIPHERY_PUBLIC_KEY: file:/config/keys/periphery.pub
       KOMODO_FIRST_SERVER_NAME: ${KOMODO_FIRST_SERVER_NAME:-Local}
       TZ: ${TZ:-Asia/Tehran}
-    ports:
-      - "9120:9120"
     volumes:
       - komodo-keys:/config/keys
       - komodo-backups:/backups
