@@ -24,8 +24,7 @@ services:
     restart: unless-stopped
     networks:
       - perpix
-    env_file:
-      - /opt/perpix/.env
+
 
 networks:
   perpix:

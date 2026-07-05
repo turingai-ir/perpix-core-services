@@ -52,8 +52,7 @@ services:
       timeout: 5s
       retries: 5
 
-    env_file:
-      - /opt/perpix/.env
+
 
   adminer:
     image: adminer:latest
