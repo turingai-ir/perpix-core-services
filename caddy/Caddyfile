@@ -14,3 +14,9 @@ cdn.perpixai.ir {
 adminer.perpixai.ir {
 	reverse_proxy http://adminer:8080
 }
+
+
+
+app.perpixai.ir {
+	reverse_proxy http://perpix-app:80
+}
