@@ -59,3 +59,35 @@ http://monitor.perpix.ir {
 http://pgadmin.perpix.ir {
 	reverse_proxy http://adminer:8080
 }
+
+
+
+
+http://api.perpixai.ir {
+	reverse_proxy http://perpix-api:8000
+}
+
+http://app.perpixai.ir {
+	reverse_proxy http://perpixai-app:80
+}
+
+http://cdn-dashboard.perpixai.ir {
+	reverse_proxy http://rustfs:9001
+}
+
+http://cdn.perpixai.ir {
+	reverse_proxy http://rustfs:9000
+}
+
+http://beszel.perpixai.ir {
+	reverse_proxy http://beszel:8090
+}
+
+http://monitor.perpixai.ir {
+	reverse_proxy http://beszel:8090
+}
+
+
+http://pgadmin.perpixai.ir {
+	reverse_proxy http://adminer:8080
+}
