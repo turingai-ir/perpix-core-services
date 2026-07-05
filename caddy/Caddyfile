@@ -30,39 +30,6 @@ http://pgadmin.perpixai.com {
 
 
 
-
-http://api.perpix.ir {
-	reverse_proxy http://perpix-api:8000
-}
-
-http://app.perpix.ir {
-	reverse_proxy http://perpix-app:80
-}
-
-http://cdn-dashboard.perpix.ir {
-	reverse_proxy http://rustfs:9001
-}
-
-http://cdn.perpix.ir {
-	reverse_proxy http://rustfs:9000
-}
-
-http://beszel.perpix.ir {
-	reverse_proxy http://beszel:8090
-}
-
-http://monitor.perpix.ir {
-	reverse_proxy http://beszel:8090
-}
-
-
-http://pgadmin.perpix.ir {
-	reverse_proxy http://adminer:8080
-}
-
-
-
-
 http://api.perpixai.ir {
 	reverse_proxy http://perpix-api:8000
 }
@@ -91,3 +58,5 @@ http://monitor.perpixai.ir {
 http://pgadmin.perpixai.ir {
 	reverse_proxy http://adminer:8080
 }
+
+
