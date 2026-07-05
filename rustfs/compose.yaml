@@ -8,7 +8,7 @@ services:
   rustfs:
     image: rustfs/rustfs:latest
     container_name: rustfs
-    mem_limit: 500m
+    mem_limit: 700m
     cpus: "0.50"
     logging: *default-logging
     security_opt:
