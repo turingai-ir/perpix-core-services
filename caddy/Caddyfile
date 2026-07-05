@@ -11,6 +11,10 @@ cdn.perpixai.ir {
 }
 
 
+cdn.perpixai.com {
+		reverse_proxy http://rustfs:9000
+}
+
 adminer.perpixai.ir {
 	reverse_proxy http://adminer:8080
 }
