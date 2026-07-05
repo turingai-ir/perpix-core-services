@@ -19,17 +19,10 @@ http://beszel.perpixai.com {
 	reverse_proxy http://beszel:8090
 }
 
-http://manager-comodo.perpixai.com {
-	reverse_proxy http://core:9120
+http://monitor.perpixai.com {
+	reverse_proxy http://beszel:8090
 }
 
-http://perpixai.com {
-	reverse_proxy http://landing-root:80
-}
-
-http://n8n.perpixai.com {
-	reverse_proxy http://n8n:5678
-}
 
 http://pgadmin.perpixai.com {
 	reverse_proxy http://adminer:8080
