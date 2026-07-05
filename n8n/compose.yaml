@@ -22,13 +22,13 @@ services:
       N8N_DIAGNOSTICS_ENABLED: "false"
     restart: unless-stopped
     networks:
-      - turing
+      - perpix
     env_file:
-      - /opt/turing/.env
+      - /opt/perpix/.env
 
 volumes:
   n8n-data:
 
 networks:
-  turing:
+  perpix:
     external: true

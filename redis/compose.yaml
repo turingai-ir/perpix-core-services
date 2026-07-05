@@ -23,10 +23,10 @@ services:
       retries: 3
     restart: unless-stopped
     networks:
-      - turing
+      - perpix
     env_file:
-      - /opt/turing/.env
+      - /opt/perpix/.env
 
 networks:
-  turing:
+  perpix:
     external: true

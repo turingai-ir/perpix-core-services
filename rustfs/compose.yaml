@@ -35,14 +35,14 @@ services:
       start_period: 40s
     restart: unless-stopped
     networks:
-      - turing
+      - perpix
     env_file:
-      - /opt/turing/.env
+      - /opt/perpix/.env
 
 volumes:
   rustfs-data:
   rustfs-logs:
 
 networks:
-  turing:
+  perpix:
     external: true

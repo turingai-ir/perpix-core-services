@@ -13,7 +13,7 @@ services:
     logging: *default-logging
     restart: unless-stopped
     networks:
-      - turing
+      - perpix
     ports:
       - "80:80"
       - "443:443"
@@ -22,10 +22,10 @@ services:
       - caddy_data:/data
       - caddy_config:/config
     env_file:
-      - /opt/turing/.env
+      - /opt/perpix/.env
 
 networks:
-  turing:
+  perpix:
     external: true
 
 volumes:

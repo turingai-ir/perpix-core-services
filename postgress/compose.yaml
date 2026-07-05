@@ -44,7 +44,7 @@ services:
 
     restart: unless-stopped
     networks:
-      - turing
+      - perpix
 
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
@@ -53,7 +53,7 @@ services:
       retries: 5
 
     env_file:
-      - /opt/turing/.env
+      - /opt/perpix/.env
 
   adminer:
     image: adminer:latest
@@ -68,7 +68,7 @@ services:
 
 
     networks:
-      - turing
+      - perpix
 
     depends_on:
       - postgres
@@ -77,5 +77,5 @@ volumes:
   postgres_data:
 
 networks:
-  turing:
+  perpix:
     external: true
