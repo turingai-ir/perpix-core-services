@@ -24,7 +24,7 @@ api.perpixai.ir {
 }
 
 app.perpixai.ir {
-
+	reverse_proxy http://perpix-app:8080
 }
 
 perpixai.ir {
