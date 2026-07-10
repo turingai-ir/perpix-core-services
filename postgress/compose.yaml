@@ -52,14 +52,6 @@ services:
       timeout: 5s
       retries: 5
 
-
-
-    networks:
-      - perpix
-
-    depends_on:
-      - postgres
-
 volumes:
   postgres_data:
 
