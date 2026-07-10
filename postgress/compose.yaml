@@ -54,18 +54,6 @@ services:
 
 
 
-  adminer:
-    image: adminer:latest
-    container_name: adminer
-    restart: unless-stopped
-    logging: *default-logging
-    mem_limit: 128m
-    cpus: "0.20"
-    ports:
-      - "8080:8080"
-
-
-
     networks:
       - perpix
 
