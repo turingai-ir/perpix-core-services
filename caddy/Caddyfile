@@ -21,8 +21,19 @@ api.perpixai.ir {
 }
 
 app.perpixai.ir {
+	@sw_file {
+		path /sw.js
+	}
+	header @sw_file Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+
+	@html_file {
+		path / /index.html
+	}
+	header @html_file Cache-Control "no-cache, must-revalidate"
+
 	reverse_proxy http://perpix-app:8080
 }
+
 
 perpixai.ir {
 	reverse_proxy http://perpix-main-landing:8080
