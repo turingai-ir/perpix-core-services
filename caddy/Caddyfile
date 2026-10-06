@@ -32,7 +32,7 @@ http://app.perpixai.ir {
     reverse_proxy http://perpix-app:8080
 }
 
-http:/test-app.perpixai.ir {
+http://test-app.perpixai.ir {
     @html_file path / /index.html
     header @html_file Cache-Control "no-cache, must-revalidate, max-age=0"
 
