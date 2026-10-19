@@ -18,9 +18,6 @@ http://api.perpixai.ir {
     reverse_proxy http://perpix-api:8000
 }
 
-http://mathesar.perpixai.ir {
-    reverse_proxy http://mathesar-web:8000
-}
 
 http://app.perpixai.ir {
     @html_file path / /index.html
