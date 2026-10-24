@@ -2,6 +2,10 @@ http://komodo.perpixai.ir {
     reverse_proxy komodo-core:9120
 }
 
+http://monitor.perpixai.com {
+    reverse_proxy komodo-core:9120
+}
+
 http://cdn-dashboard.perpixai.ir {
     reverse_proxy http://rustfs:9001
 }
