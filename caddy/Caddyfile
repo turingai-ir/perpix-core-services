@@ -43,21 +43,6 @@ http://test-app.perpixai.ir {
     reverse_proxy http://test-perpix-app:8081
 }
 
-http://perpixai.ir {
-    @html_file path / /index.html
-    header @html_file Cache-Control "no-cache, must-revalidate, max-age=0"
-
-    reverse_proxy http://robot-landing:8080
-}
-
-
-
-http://test-landing.perpixai.ir {
-    @html_file path / /index.html
-    header @html_file Cache-Control "no-cache, must-revalidate, max-age=0"
-
-    reverse_proxy http://robot-landing:8080
-}
 
 
 http://cheetoz-namaki-admin.perpixai.ir {
