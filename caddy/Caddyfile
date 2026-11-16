@@ -1,4 +1,4 @@
-https://komodo.perpixai.ir {
+http://komodo.perpixai.ir {
     reverse_proxy komodo-core:9120
 }
 
